@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+body{
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    min-height: 100vh;
+    position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1{
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.input-form{
+    min-width: 50vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input{
+    min-width: 45vw;
+    min-height: 4vh;
+    border-radius: 5px;
+    margin-right: 1rem;
+    outline: none;
+    border: 2px solid;
+    font-size: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.prioritySelector{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+select{
+    width: 4vw;
+    margin-right: 1rem;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.todoList{
+    flex-direction:column;
+    display: flex;
+    align-items: center;
+}
+
+.todo-button{
+    min-height: 3vh;
+    border-radius: 5px;
+    padding: 8px;
+    outline: none;
+    border: 2px solid;
+    background-color: #94a3b8;
+}
+
+.todo-button:hover{
+    cursor: pointer;
+}
+
+.todoElement{
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    justify-content: space-between;
+    border: 2px solid white;
+    border-radius: 5px;   
+    margin-top: 1.5rem;
+    padding: 0px 15px;
+    height: 6vh;
+}
+
+.element-name{
+    display: flex;
+    align-items: center;
+}
+
+.element-button{
+    display: flex;
+    align-items: center;
+}
+
+.element-button select{
+    height: 2.5rem;
+    margin-right: 5px;  
+}
+
+.element-button button{
+    height: 2.5rem;
+    outline: none;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
+    background-color: #94a3b8;
+}
+
+.element-button button:hover{
+    cursor: pointer;
+}
+
+.element-complete{
+    text-decoration:line-through;
 }
