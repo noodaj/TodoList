@@ -1,10 +1,10 @@
 import React from "react";
 import { TodoElement } from "./todo";
 
-export let TodoList = ({ todos, setTodos }) => {
+export let TodoList = ({ todos, setTodos, statusTodo }) => {
 	return (
 		<div className="todoList">
-			{todos.map((todo) => (
+			{statusTodo.map((todo) => (
 				<TodoElement
 					text={todo.text}
 					key={todo.id}

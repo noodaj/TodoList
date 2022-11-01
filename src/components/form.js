@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 
-export const Form = ({ setTodos, todos }) => {
+export const Form = ({ setTodos, todos, setStatus }) => {
 	let newTodo = useRef();
-	let TodoPrio= useRef();
+	let TodoPrio = useRef();
+
 	//get new todo from user
 	let getInput = (e) => {
 		e.preventDefault();
@@ -22,9 +23,13 @@ export const Form = ({ setTodos, todos }) => {
 				priority: TodoPrio.current.value,
 			},
 		]);
+
 		newTodo.current.value = "";
 	};
 
+	let changeStatus = (e) => {
+		setStatus(e.target.value);
+	}
 	return (
 		<>
 			<form className="input-form">
@@ -41,6 +46,13 @@ export const Form = ({ setTodos, todos }) => {
 						<option value="Medium">Medium</option>
 						<option value="Low">Low</option>
 					</select>
+					<select onChange = {changeStatus}>
+						<option value="All">All</option>
+						<option value="High">High</option>
+						<option value="Medium">Medium</option>
+						<option value="Low">Low</option>
+					</select>
+
 					<button onClick={getInput} className="todo-button">
 						Submit
 					</button>

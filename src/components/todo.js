@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-export let TodoElement = ({ text, priority, todo, todos, setTodos }) => {
-	const priorities = [
+export let TodoElement = ({ todo, todos, setTodos}) => {
+	const {text, completed, id, priority} = todo;
+
+	let priorities = [
 		{ value: "Low", text: "Low" },
 		{ value: "Medium", text: "Medium" },
 		{ value: "High", text: "High" },
@@ -9,17 +11,24 @@ export let TodoElement = ({ text, priority, todo, todos, setTodos }) => {
 
 	const [curPriority, setNewPriority] = useState(priority);
 
-	console.log(curPriority);
 	let changePriority = (e) => {
-		setNewPriority(e.target.value);
+		setTodos(
+			todos.map(el =>{
+				if(el.id === todo.id){
+					return {...el, priority: e.target.value}
+				}
+				return el
+			})
+		)
+		setNewPriority(todo.priority = e.target.value);
 	}
 	
 	//if the task is complete, filter through all todos and set that todo's complete state to the opposite
 	let setComplete = () => {
 		setTodos(
 			todos.map((el) => {
-				if (el.id === todo.id) {
-					return { ...el, completed: !todo.completed };
+				if (el.id === id) {
+					return { ...el, completed: !completed };
 				}
 				return el;
 			})
@@ -32,20 +41,15 @@ export let TodoElement = ({ text, priority, todo, todos, setTodos }) => {
 	};
 
 	return (
-		<div className="todoElement">
-			<h3 className="element-name">{text}</h3>
+		<div className="todoElement" data-testid="todo-1">
+			<h3 className={`${todo.completed ? "element-name-completed" : "element-name"}`}>{text}</h3>
 			<div className="element-button">
-				<select onChange={changePriority} value={curPriority}>
-					{priorities.map(el => {
-						<option key={el.value} value={el.value}>
-							{el.text}
-						</option>
-					})};
+				<select value={curPriority} onChange = {changePriority}>
+					{priorities.map((el) => (
+						<option key = {el.value} value = {el.value}>{el.text}</option>
+					))}
 				</select>
-				<button
-					onClick={setComplete}
-					className={todo.completed ? "element-complete" : ""}
-				>
+				<button onClick={setComplete}>
 					Completed
 				</button>
 				<button onClick={removeElement} className="element-incomplete">

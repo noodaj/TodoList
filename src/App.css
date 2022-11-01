@@ -75,6 +75,13 @@ select{
     align-items: center;
 }
 
+.element-name-completed{
+    display: flex;
+    align-items: center;
+    text-decoration-line:line-through;
+    text-decoration-thickness: 3px;
+}
+
 .element-button{
     display: flex;
     align-items: center;
@@ -97,8 +104,4 @@ select{
 
 .element-button button:hover{
     cursor: pointer;
-}
-
-.element-complete{
-    text-decoration:line-through;
 }
