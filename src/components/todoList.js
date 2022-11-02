@@ -1,17 +1,16 @@
 import React from "react";
-import { TodoElement } from "./todo";
+import TodoElement  from "./todo";
 
 export let TodoList = ({ todos, setTodos, statusTodo }) => {
+	//map each todo to a todo element 
 	return (
 		<div className="todoList">
 			{statusTodo.map((todo) => (
 				<TodoElement
-					text={todo.text}
-					key={todo.id}
 					todo={todo}
+					key={todo.id}
 					setTodos={setTodos}
 					todos={todos}
-					priority={todo.priority}
 				></TodoElement>
 			))}
 		</div>

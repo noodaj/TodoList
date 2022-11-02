@@ -11,6 +11,8 @@ function App() {
 	const [status, setStatus] = useState("All");
 	const [statusTodo, setStatusTodos] = useState(todos);
 	
+	//use effect to rerender app based on which priority is selected
+	//also rerenders when the todos change so it reflects the new priority
 	useEffect(() => {
 		switch(status){
 			case 'High':
@@ -28,15 +30,16 @@ function App() {
 		}
 	},[status, todos]);
 
+	//updates the local storage if the todos array is changed 
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
 	
 
+	//render app 
 	return (
 		<div className="App">
 			<h1>Todo List</h1>
-			{/*creating the form and list*/}
 			<Form todos={todos} setTodos={setTodos} setStatus = {setStatus}/>
 			<TodoList todos={todos} setTodos={setTodos} statusTodo={statusTodo}></TodoList>
 		</div>

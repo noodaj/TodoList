@@ -1,35 +1,36 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TodoList from "../todoList";
+import { TodoList } from "../todoList";
+
+//very simple test 
 
 const mocktodoElement = jest.fn();
 jest.mock("../todo", () => (props) => {
-    const {todo} = props;
-    const {text, key, priority} = todo;
-	mocktodoElement({text, key, priority});
-	return <mock-component></mock-component>
+	mocktodoElement(props);
+	return <mock-Child></mock-Child>;
 });
 
-const ex = [
-    { text: "wash dishes", key: 1, completed: false, priority: "High" },
-    { text: "do laundry", key: 2, completed: false, priority: "Low" },
-    { text: "do homework", key: 3, completed: true, priority: "High" },
-];
-
 let todo = {
-    text: "wash dishes",
-    key: 1,
-    completed: false,
+	text: "wash dishes",
+	id: 1,
+	priority: "High",
 };
 
-const todos = [todo]
-test("render todo component", () => {
-	render(<TodoList todos={todos} setTodos></TodoList>);
+let todos = [todo];
+
+test("render basic component", () => {
+	render(
+		<TodoList todos={todos} setTodos statusTodo={todos}></TodoList>
+	);
 	expect(mocktodoElement).toHaveBeenCalledWith(
-        expect.objectContaining({
-            text: "wash dishes",
-            key: 1,
-            completed: false,
-        })
+		expect.objectContaining({
+			setTodos: true,
+			todo: expect.objectContaining({
+				text: "wash dishes",
+				id: 1,
+				priority: "High",
+			}),
+			todos: expect.arrayContaining([todo]),
+		})
 	);
 });

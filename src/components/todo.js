@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-export let TodoElement = ({ todo, todos, setTodos}) => {
+function TodoElement ({ todo, todos, setTodos}) {
+	//destructure 
 	const {text, completed, id, priority} = todo;
 
 	let priorities = [
@@ -11,6 +12,9 @@ export let TodoElement = ({ todo, todos, setTodos}) => {
 
 	const [curPriority, setNewPriority] = useState(priority);
 
+	//function to change priority
+	//maps todo to reflect the new priority
+	//set the curPriority to the target 
 	let changePriority = (e) => {
 		setTodos(
 			todos.map(el =>{
@@ -41,7 +45,7 @@ export let TodoElement = ({ todo, todos, setTodos}) => {
 	};
 
 	return (
-		<div className="todoElement" data-testid="todo-1">
+		<div className="todoElement" data-testid="todoElement">
 			<h3 className={`${todo.completed ? "element-name-completed" : "element-name"}`}>{text}</h3>
 			<div className="element-button">
 				<select value={curPriority} onChange = {changePriority}>
@@ -59,3 +63,5 @@ export let TodoElement = ({ todo, todos, setTodos}) => {
 		</div>
 	);
 };
+
+export default TodoElement
